@@ -1,0 +1,59 @@
+{
+  "name": "Project PANS",
+  "namespace": "Stanford\\ProjPANS",
+  "description": "Project specific EM for PANS project",
+  "authors": [
+    {
+      "name": "Jae Lee",
+      "email": "jael@stanford.edu",
+      "institution": "Stanford University"
+    }
+  ],
+  "permissions": [
+  ],
+  "links": {
+    "project": [
+      {
+        "name": "Download Merged PDF",
+        "icon": "page_white_stack",
+        "url": "PrintPDF.php",
+        "show-header-and-footer": true
+      }
+    ]
+  },
+  "system-settings": [
+    {
+      "key": "enable-system-debug-logging",
+      "name": "<b>Enable Debug Logging (system-wide)</b>",
+      "required": false,
+      "type": "checkbox"
+    }
+  ],
+  "project-settings": [
+    {
+      "key": "enable-project-debug-logging",
+      "name": "<b>Enable Debug Logging</b></h6><i> (Requires emLogger)</i><br>If you have questions enabling debugging, please contact the REDCap team for help.",
+      "required": false,
+      "type": "checkbox"
+    },
+    {
+      "key": "pdf-merge-print-desc",
+      "name": "<div class='alert alert-warning'><h3>PDF Merge Print Settings</h3><br>Select the event and form names that you want merged in the PDF file.</div>",
+      "required": false,
+      "type": "descriptive"
+    },
+    {
+      "key": "event-field",
+      "name": "<b>Select the Visit event for which you print the PDF form (e.g. visit_arm_1)</b>",
+      "required": true,
+      "type": "event-list"
+    },
+    {
+      "key": "form-field",
+      "name": "<b>Select the forms you want merged into the PDF. The sequence selected here will be preserved (e.g. pans_patient_questionnaire)</b>",
+      "required": true,
+      "type": "form-list",
+      "repeatable" : true
+    }
+  ]
+}
