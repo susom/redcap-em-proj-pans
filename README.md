@@ -15,9 +15,3 @@ To use:
 3. Check the downloads folder for the downloaded PDF. The name should be in the format: 
     <record_id>\_\<instance>\_\<timestamp>.pdf 
  
-
-=======
-# proj-pans
-
-Project specifig EM for the PANS project
-
