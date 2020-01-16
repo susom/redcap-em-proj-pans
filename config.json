@@ -16,8 +16,7 @@
       {
         "name": "Download Merged PDF",
         "icon": "page_white_stack",
-        "url": "PrintPDF.php",
-        "show-header-and-footer": true
+        "url": "PrintPDF.php"
       }
     ]
   },
