@@ -20,7 +20,12 @@ $event_id = $parts['event_id'];
 //check that we are in the right event
 $target_event = $module->getProjectSetting('event-field');
 if ($target_event !== $event_id) die("Unable to verify event id. Please execute this from the visit event of the record for which you want the PDF");
-if (!isset($instance)) die("Unable to get instance id. Please check that you were in the record and event that you want to print the PDF. ");
+if (!isset($instance)) {
+    //sometimes REDCap does not report instance id for instance 1
+    //so as long as event id is target event (visit event id specified in config), if no instance ID, assume it is instance 1.
+    $instance = 1;
+    //die("Unable to get instance id. Please check that you were in the record and event that you want to print the PDF. ");
+}
 if (!isset($record)) die("Unable to get record id. Please check that you were in the record that you want to print the PDF. ");
 
 printPatientForms($record, $event_id, $instance);
