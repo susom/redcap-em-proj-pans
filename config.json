@@ -36,23 +36,38 @@
       "type": "checkbox"
     },
     {
-      "key": "pdf-merge-print-desc",
-      "name": "<div class='alert alert-warning'><h3>PDF Merge Print Settings</h3><br>Select the event and form names that you want merged in the PDF file.</div>",
+      "key": "pdf-events",
+      "name": "<b>PDF Events</b><br>Repeating subsettings to define set of forms to print for each event",
       "required": false,
-      "type": "descriptive"
-    },
-    {
-      "key": "event-field",
-      "name": "<b>Select the Visit event for which you print the PDF form (e.g. visit_arm_1)</b>",
-      "required": true,
-      "type": "event-list"
-    },
-    {
-      "key": "form-field",
-      "name": "<b>Select the forms you want merged into the PDF. The sequence selected here will be preserved (e.g. pans_patient_questionnaire)</b>",
-      "required": true,
-      "type": "form-list",
-      "repeatable" : true
+      "type": "sub_settings",
+      "repeatable": true,
+      "sub_settings": [
+        {
+          "key": "pdf-merge-print-desc",
+          "name": "<div class='alert alert-warning'><h3>PDF Merge Print Settings</h3><br>Select the event and form names that you want merged in the PDF file.</div>",
+          "required": false,
+          "type": "descriptive"
+        },
+        {
+          "key": "event-field",
+          "name": "<b>Select the Visit event for which you print the PDF form (e.g. visit_arm_1)</b>",
+          "required": true,
+          "type": "event-list"
+        },
+        {
+          "key": "form-field",
+          "name": "<b>Select the forms you want merged into the PDF. The sequence selected here will be preserved (e.g. pans_patient_questionnaire)</b>",
+          "required": true,
+          "type": "form-list",
+          "repeatable" : true
+        },
+        {
+          "key": "compact-display",
+          "name": "<b>Compact Display</b><br>Click checkbox to return a compact-formatted PDF (excludes fields that have no data saved and excludes unselected multiple choice options)",
+          "required": false,
+          "type": "checkbox"
+        }
+      ]
     }
   ]
 }
