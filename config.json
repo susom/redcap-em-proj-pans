@@ -14,7 +14,7 @@
   "links": {
     "project": [
       {
-        "name": "Download Merged PDF",
+        "name": "PANS: Download Merged PDF",
         "icon": "page_white_stack",
         "url": "PrintPDF.php"
       }
