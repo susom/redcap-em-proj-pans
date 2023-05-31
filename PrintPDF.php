@@ -7,7 +7,7 @@ namespace Stanford\ProjPANS;
 use REDCap;
 //require_once 'vendor/autoload.php';
 include_once 'PDFMerger.php';
-
+//$module->emDebug("starting PDF MERGE");
 define('MIN_PDF_STRLEN', 25050);
 
 $refer = $_SERVER['HTTP_REFERER'];

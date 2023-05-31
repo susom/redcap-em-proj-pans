@@ -2,6 +2,7 @@
   "name": "Project PANS",
   "namespace": "Stanford\\ProjPANS",
   "description": "Project specific EM for PANS project",
+  "framework-version": 9,
   "authors": [
     {
       "name": "Jae Lee",
