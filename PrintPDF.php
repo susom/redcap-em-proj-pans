@@ -5,9 +5,11 @@ namespace Stanford\ProjPANS;
 /** @var \Stanford\ProjPANS\ProjPANS $module */
 
 use REDCap;
-//require_once 'vendor/autoload.php';
-include_once 'PDFMerger.php';
-//$module->emDebug("starting PDF MERGE");
+use setasign\Fpdi\Tcpdf\Fpdi;
+require_once 'vendor/autoload.php';
+
+$module->emDebug("starting PDF MERGE");
+
 define('MIN_PDF_STRLEN', 25050);
 
 $refer = $_SERVER['HTTP_REFERER'];
@@ -62,10 +64,11 @@ function printPatientForms($record, $event_id, $instance, $form_list, $compact_d
     //get list of forms to print
     //$form_list = $module->getProjectSetting('form-field');
 
-    $pdf = new \PDFMerger\PDFMerger;
+    $pdf = new Fpdi();
 
     //list of files to unlink after print
     $files = array();
+    $output_path = $record.'_'.$instance.'_'.date('YmdHis') .'.pdf';
 
     foreach ($form_list as $instrument) {
         $module->emDebug("Getting pdf for $instrument");
@@ -76,13 +79,30 @@ function printPatientForms($record, $event_id, $instance, $form_list, $compact_d
         if (strlen($pdf_content)>MIN_PDF_STRLEN) {
             //$module->emDebug("size of pdf is $instrument ".strlen($pdf_content));
             file_put_contents($temp_name, $pdf_content);
-            $pdf->addPDF($temp_name, 'all');
+
+            //$pdf->addPDF($temp_name, 'all');
+            $page_ct = $pdf->setSourceFile($temp_name);
+
+            for ($page_num = 1; $page_num <= $page_ct; $page_num++) {
+                $tplIdx = $pdf->importPage($page_num);
+
+                // add a page
+                $pdf->AddPage();
+                //$pdf->useTemplate($tplIdx, null, null, 0, 0, true);
+                $pdf->useTemplate($tplIdx, null, null, null,null,true );
+                //$module->emDebug("Page is now at: ".$pdf->getNumPages());
+            }
+
             $files[] = $temp_name;
+
+            //$pdf->Output($output_path,'D');
         }
     }
 
     ob_start(); //clear out out
-    $pdf->merge('download', $record.'_'.$instance.'_'.date('YmdHis') .'.pdf');
+    //$pdf->merge('browser', $record.'_'.$instance.'_'.date('YmdHis') .'.pdf');
+    $pdf->Output($output_path, 'D');
+
     ob_end_flush();
 
     //unlink all the files
